@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% block title %}services{% endblock title %}
+{% block head %}
+
+
+{% endblock head %}
+
+{% block body %}
+
+
+
+<!-- Featured Projects -->
+
+<div class="categories">
+  <div class="small-container">
+    <h2 class="title">Your Projects</h2>
+
+  
+  <div class="row">
+    {% for p in d  %}
+      <div class="col-3">
+        <img src="{{p.p_image.url}}" height="250px" alt="">
+        <b>Mediline</b>
+        <form method="post" action="">
+          {% csrf_token %}
+        <input type="hidden" name="proj_name" value="{{p.project_name}}">
+        <button type="submit"  name="view">View</button>
+      </div>
+    </form>
+      {% endfor %}
+      <!-- <div class="col-3">
+        <img src="../static/images/category-2.jpg" alt="">
+      </div>
+      <b>Mediline</b>
+      <div class="col-3">
+        <img src="../static/images/category-3.jpg" alt="">
+      </div>       -->
+  </div>
+</div>
+</div>
+
+<!-- featured Galleries -->
+
+
+<div class="small-container">
+  <h2 class="title">Features Projects</h2>
+  <div class="row">
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+  </div>
+
+     <!-- Latest Projects -->
+  <h2 class="title">Features Favourites <!-- Latest Projects --></h2>
+  <div class="row">
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+  </div>
+</div>
+
+<!-- offer -->
+
+
+   <div class="offer">
+    <div class="small-container">
+      <div class="row">
+        <div class="col-2">
+          <img src="../static/images/robo.png" class="offer-img" alt="">
+        </div>
+        <div class="col-2">
+        <p>Exclusively Available on SCRATCH</p>
+        <h1>Smart BOT4</h1>
+        <small>This Bot can not only write code but can also debug your input code making it more efficient and accurate.</small> <br>
+        <a href="" class="btn">Subscribe &#8594</a>
+      </div>
+        
+        
+      </div>
+    </div>
+   </div>
+
+   <!-- ----------Testimonial ---------------------- -->
+
+   <div class="testimonial">
+    <div class="small-container">
+      <div class="row">
+        <div class="col-3">
+          <i class="fa fa-quote-left"></i>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum porro dolorem laudantium minima repellendus ex sapiente quidem, similique labore ut enim nam id vero et itaque cumque? Voluptatum, tempora officiis?</p>
+
+          <img src="../static/images/user-1.png" alt="">
+         <h3> Sean Parker</h3>
+        </div>
+        <div class="col-3">
+          <i class="fa fa-quote-left"></i>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum porro dolorem laudantium minima repellendus ex sapiente quidem, similique labore ut enim nam id vero et itaque cumque? Voluptatum, tempora officiis?</p>
+
+          <img src="../static/images/user-2.png" alt="">
+         <h3> Sean Parker</h3>
+        </div>
+        <div class="col-3">
+          <i class="fa fa-quote-left"></i>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum porro dolorem laudantium minima repellendus ex sapiente quidem, similique labore ut enim nam id vero et itaque cumque? Voluptatum, tempora officiis?</p>
+
+          <img src="../static/images/user-3.png" alt="">
+         <h3> Sean Parker</h3>
+        </div>
+      </div>
+    </div>
+   </div>
+
+
+
+   <!-- ------------------brands------------------- -->
+   <div class="brands">
+    <div class="small-container">
+      <h2 class="title">Partner Programmes</h2>
+      <div class="row">
+        <div class="col-5">
+          <img src="../static/images/logo-godrej.png" alt="">
+        </div>
+        <div class="col-5">
+          <img src="../static/images/logo-coca-cola.png" alt="">
+        </div>
+        <div class="col-5">
+          <img src="../static/images/logo-oppo.png" alt="">
+        </div>
+        <div class="col-5">
+          <img src="../static/images/logo-godrej.png" alt="">
+        </div>
+        <div class="col-5">
+          <img src="../static/images/logo-godrej.png" alt="">
+        </div>
+      </div>
+    </div>
+   </div>
+
+
+
+
+
+
+{% endblock body %}

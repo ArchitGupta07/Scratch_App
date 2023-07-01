@@ -1,0 +1,400 @@
+{% load extras %}
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects</title>
+  <link rel="stylesheet" href="../static/css/base.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Unicons CSS -->
+
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="navbar">
+      <div class="logo">
+        <!-- <img class="logo" width="125px" src="../images/logo - Copy.png" alt=""> -->
+        <h3><b>SCRATCH</b></h3>
+      </div>
+      <nav>
+        <ul id="MenuItems">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/project_page/Mediline">Projects</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/support">Support</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/logout">Logout</a></li>
+        </ul>
+      </nav>
+      <img src="../static/images/server.png" width="30px" height="30px" alt="">
+      <p style="padding: 0 20px;">Welcome, {{user.username}}</p>
+      <img src="../static/images/menu.png" class="menu-icon"  onclick="menuToggle()">
+    </div>
+    
+  </div>
+
+
+<!-- ---------------single project details---------------- -->
+
+
+<div class="small-container single-product">
+  <div class="row">
+    <div class="col-2">
+      <img src="{{proj.p_image.url}}" alt="" width="100%" id="productimg">
+
+      <div class="small-img-row">
+
+        <form method="post" action="">
+          {% csrf_token %}   
+          <input type="hidden" name="proj_name" value ={{proj.project_name}} >
+          <div class="small-img-col">
+            {% if user not in proj.liked.all %}
+            <button  name='like' type="submit" style="color: #7b7776;"><i class="fa fa-heart fa-2x"></i></button>
+            <b> {{proj.num_likes}}</b>
+            {% else %}
+            <button  name='like' type="submit" style="color: #e91571;"><i class="fa fa-heart fa-2x"></i></button>
+            <b> {{proj.num_likes}}</b>
+            {% endif %}
+          </div>
+        </form>
+        <div class="small-img-col">
+          <button style="color: #7b7776;"><i class="fa fa-eye fa-2x"></i></button>
+          <b> {{proj.num_views}}</b>
+        </div>
+        <div class="small-img-col">
+          <button style="color: #7b7776;"><i class="fa fa-comments-o fa-2x"></i></button>
+          <b> 1</b>
+        </div>
+        <div class="small-img-col">
+          <button style="color: #7b7776;"><i class="fa fa-cloud-download fa-2x"></i></button>
+          
+          <b> {{proj.num_down}}</b>
+        </div>
+        <div class="small-img-col">
+          <!-- <button><i class="fa fa-cloud-download fa-3x" aria-hidden=""></i></button> -->
+          <button style="color: #7b7776;"><i class="fa fa-bookmark fa-2x"></i></button>
+          <b> 1</b>
+        </div>
+        <!-- <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div>
+                  <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div>
+                  <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div>
+                  <div class="small-img-col">
+                      <img src="../images/gallery-1.jpg" alt="" width="100%" class="small-img">
+                  </div> -->
+      </div>
+
+
+
+
+    </div>
+    <div class="col-2">
+      
+      <h1>{{proj.project_name}}</h1>
+      <p>Created by : {{proj.p_creator}} </p>
+      <!-- <h4>rs100</h4>
+      <select>
+        <option value="">Select Size</option>
+        <option value="">XXL</option>
+        <option value="">XL</option>
+        <option value="">Large</option>
+      </select> -->
+      <h3>Project Notes<i class="fa fa-indent"></i></h3>
+      <br>
+      <p>
+        {{proj.project_notes}}
+      </p>
+
+
+      <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="impbtn" name="down">Download</button>
+      <button type="submit" class="impbtn" name="remix">Remix this</button>
+      <button type="submit" class="impbtn" name="fav">Add To Favourites</button>
+
+      {% if current_user in profile.follows.all %}
+
+
+
+      <button type="submit" class="impbtn" name="follow" value = "unfollow">Unfollow <p style="color: #15a9e9;">@{{proj.p_creator}}</p></button>
+      {% else %}
+      <button type="submit" class="impbtn" name="follow" value="follow">Follow <p style="color: #15a9e9;">@{{proj.p_creator}}</p></button>
+
+      {% endif %}
+
+
+
+      </form>
+
+
+      
+
+
+      <!-- <a href="" class="btn">Download</a>
+      <a href="" class="btn">Remix this</a>
+      <a href="" class="btn">Favourites</a> -->
+     
+    </div>
+  </div>
+</div>
+
+<!-- title -->
+
+<div class="small-container">
+  <div class="row row-2 viewmore">
+    <h2> Related Projects</h2>
+    <button><p>View More</p></button>
+  </div>
+</div>
+
+<div class="small-container">
+  <!-- <h2 class="title">Your Gallery</h2> -->
+
+
+  <div class="row">
+    <div class="col-4">
+      <img src="../static/images/project2.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project1.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project4.jpg" height="250px" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+    <div class="col-4">
+      <img src="../static/images/project5.jpg" alt="">
+      <h4>Project_injected</h4>
+      <div class="rating"></div>
+      <p>Notes</p>
+    </div>
+  </div>
+
+
+
+</div>
+
+<!-- offer -->
+
+
+
+
+<!-- ----------Testimonial ---------------------- -->
+
+
+
+
+
+<!-- ------------------brands------------------- -->
+
+
+<!-- --------------comment box-------------- -->
+
+ <div class="comment-session">
+  {% for c in comm  %}
+  <div class="post-comment">
+    <div class="list">
+      <div class="user">
+        <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
+        <div class="user-meta">
+          <div class="name">{{c.username}}</div>
+          <div class="day"> {{c.date}}</div>
+
+        </div>
+      </div>
+      <div class="comment-post">{{c.comment}}</div>
+
+      <div class="reply-com">
+        <button class="collapsible">Reply</button>       
+        <div class="content" >         
+          <form action="" method="post">
+            {% csrf_token %}
+            <textarea id="comment" name="comment" cols="30" rows="2" placeholder="Your message"></textarea>
+            <input type="hidden" name="parent_id" value="{{c.id}}">
+          
+            <button type="submit" name="com" class="comment-submit">Post a Reply</button>
+          </form>       
+        </div>
+      </div>
+    
+    </div>
+    {% for r in replydict|get_val:c.id  %}
+    <div class="replies">
+          
+
+          <div class="user">
+            <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
+            <div class="user-meta">
+              <div class="name">{{r.username}}</div>
+              <div class="day"> {{r.date}}</div>
+    
+            </div>
+          </div>
+          <div class="comment-post"><a href="" style="color: rgb(19, 122, 232);">@{{r.parent.username}}</a> {{r.comment}}</div>                
+             
+            <hr>  
+            
+         
+          
+          
+    </div>
+    <br>
+    {% endfor %}
+   
+  </div>
+  <br>
+  {% endfor %}
+  <div class="comment-box">
+    <div class="user">
+      <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
+      <div class="name">{{user.username}}</div>
+
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
+      <input type="hidden" name="parent_id" value="">
+      <button type="submit" name="com" {{c.id}}class="comment-submit">Post Comment</button>
+    </form>
+  </div>
+ </div>
+ <br>
+ <br>
+
+
+  <!-- ------------footer ---------------------- -->
+ <div class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col-1">
+        <h3>Download Our App</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        <div class="app-logo">
+          <img src="../static/images/play-store.png" alt="">
+          <img src="../static/images/app-store.png" alt="">
+        </div>
+      </div>
+      <div class="footer-col-2">
+        <img src="" alt="">
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+      </div>
+      <div class="footer-col-3">
+        <h3>Useful Links</h3>
+        <ul>
+          <li>Coupons</li>
+          <li>Blog Post</li>
+          <li>Policy </li>
+          <li>Patreon</li>
+        </ul>
+      </div>
+      <div class="footer-col-4">
+        <h3>Follow Us</h3>
+        <ul>
+          <li>Facebook</li>
+          <li>Instagram</li>
+          <li>Twitter </li>
+          <li>Youtube</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <p class="copyright">Copyright 2023 - Archit Gupta</p>
+  </div>
+</div>
+
+ <script>
+
+  var MenuItems = document.getElementById("MenuItems");
+  MenuItems.style.maxHeight = "0px";
+  function menuToggle() {
+    if (MenuItems.style.maxHeight == "0px") {
+      MenuItems.style.maxHeight = "200px";
+
+    }
+    else {
+      MenuItems.style.maxHeight = "0px";
+    }
+  }
+
+
+
+</script>
+
+
+ <script>
+  var productimg = document.getElementById("productimg");
+  var smallimg = document.getElementsByClassName("small-img");
+  smallimg[0].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+  smallimg[1].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+  smallimg[2].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+  smallimg[3].onclick = function () {
+    productimg.src = smallimg[0].src;
+  }
+</script>
+
+
+<!-- like button -------------  -->
+<script>
+  function liked(){
+    var element = document.getElementById("like");
+    element.classList.toggle("liked");
+  }
+</script>
+
+
+<!-- --------collapsible reply to comment------------ -->
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  // var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } 
+    });
+  }
+  </script>
+
+
+
+
+</body>
+
+</html>

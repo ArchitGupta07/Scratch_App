@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Unicons CSS -->
+    
+   
+  </head>
+  <body>
+    
+    <div class="container">
+      <div class="navbar">
+        <div class="logo">
+          <!-- <img class="logo" width="125px" src="../images/logo - Copy.png" alt=""> -->
+          <h3><b>SCRATCH</b></h3>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/project_page/Mediline">Projects</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/support">Support</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </nav>
+        <img src="../static/images/server.png" width="30px" height="30px" alt="">
+        <p style="padding: 0 20px;">Welcome, {{user.username}}</p>
+        <img src="../images/menu.png" class="menu-icon"  onclick="menuToggle()">
+      </div>
+      
+     </div>
+
+    <div class="small-container">
+            <h2 class="title">Your Gallery</h2>
+
+        <div class="row row-2">
+        <h2>All Projects</h2>
+        <select name="" id="">
+            <option value="">Default Shorting</option>
+            <option value="">Sort by Name</option>
+            <option value="">Sort by date created</option>
+            
+        </select>
+        </div>
+        <div class="row">
+          {% for p in proj_gal  %}
+            <div class="col-4">
+                <a href="/project_page/{{p.project_name}}"><img src="{{p.p_image.url}}" alt=""></a>
+                <h4>{{p.project_name}}</h4>                
+                <p>By : {{p.p_creator}}</p>
+                <div class="rating">{{p.num_likes}} Likes {{p.num_views}} views</div>
+            </div>
+            {% endfor %} 
+            <div class="col-4">
+                <img src="../static/images/project1.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project4.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="../static/images/project5.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project1.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project4.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+            <div class="col-4">
+                <img src="../static/images/project2.jpg" alt="">
+                <h4>Project_injected</h4>
+                <div class="rating"></div>
+                <p>Notes</p>
+            </div>
+        </div>
+
+      <div class="page-btn">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>&#8594</span>
+      </div>
+
+    </div>
+
+  <!-- offer -->
+
+
+   
+
+     <!-- ----------Testimonial ---------------------- -->
+
+    
+
+
+
+     <!-- ------------------brands------------------- -->
+
+
+     <!-- !-- --------------comment box-------------- --> 
+
+ <div class="comment-session">
+  {% for d in gcomm  %}
+  <div class="post-comment">
+    <div class="list">
+      <div class="user">
+        <div class="user-image"><img src="../static/images/avatar.jpg" alt=""></div>
+        <div class="user-meta">
+          <div class="name">{{d.username}}</div>
+          <div class="day"> {{d.date}}</div>
+
+        </div>
+      </div>
+      <div class="comment-post">{{d.gcomment}}</div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="comment-box">
+    <div class="user">
+      <div class="image"><img src="../static/images/avatar.jpg" alt=""></div>
+      <div class="name">{{user.username}}</div>
+
+    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <textarea id="comment" name="comment" cols="30" rows="10" placeholder="Your message"></textarea>
+      <button type="submit" name="com" class="comment-submit">Post Comment</button>
+    </form>
+  </div>
+ </div>
+ <br>
+ <br>
+ 
+    
+
+
+     <!-- ------------footer ---------------------- -->
+
+     <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col-1">
+            <h3>Download Our App</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <div class="app-logo">
+              <img src="../images/play-store.png" alt="">
+              <img src="../images/app-store.png" alt="">
+            </div>
+          </div>
+          <div class="footer-col-2">
+            <img src="../images/logo-white.png" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+          <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+              <li>Coupons</li>
+              <li>Blog Post</li>
+              <li>Policy </li>
+              <li>Patreon</li>
+            </ul>
+          </div>
+          <div class="footer-col-4">
+            <h3>Follow Us</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Instagram</li>
+              <li>Twitter </li>
+              <li>Youtube</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2023 - Archit Gupta</p>
+      </div>
+     </div>
+
+
+    
+ 
+    
+      
+    <!-- Javascript -->
+    
+    <!-- js for toggle menu -->
+      <script>
+
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menuToggle(){
+          if( MenuItems.style.maxHeight == "0px")
+          {
+            MenuItems.style.maxHeight = "200px";
+
+          }
+          else{
+            MenuItems.style.maxHeight = "0px";
+          }
+        }
+
+
+ 
+      </script>
+   
+  </body>
+</html>

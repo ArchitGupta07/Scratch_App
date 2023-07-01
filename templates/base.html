@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects</title>
+    <link rel="stylesheet" href="../static/css/base.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Unicons CSS -->
+    
+   
+ 
+    
+
+ {% block head %}{% endblock head %}
+</head>
+<body>
+
+  <div class="header">
+    <div class="container">
+      <div class="navbar">
+       
+        <div class="logo">
+          <!-- <img class="logo" width="125px" src="../images/logo - Copy.png" alt=""> -->
+          <h3><b>SCRATCH</b></h3>
+        </div>
+        <nav>
+          <ul id="MenuItems">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/project_page/Mediline">Projects</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/support">Support</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+          
+        </nav>
+        <img src="../static/images/server.png" width="30px" height="30px" alt="">
+        <p style="padding: 0 20px;">Welcome, {{user.username}}</p>
+        
+        <img src="../static/images/menu.png" class="menu-icon"  onclick="menuToggle()">
+      </div>
+
+
+      <!-- ------------------Activty notification----------------- -->
+
+
+      <div class="activity-center">
+        <div class="component">
+        <div class="public">
+            <h5>Trending</h5>
+            <p>{{trending_proj.project_name}} is trending with maximum likes. You should check this out</p>
+            {% for all in all_active   %}            
+
+            <p>Activty : {{all.activity}}</p>   
+
+            {% endfor %}
+            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
+            
+
+        </div>
+        <div class="private">
+            <h5>For you</h5>
+
+            {% for p in personal   %}
+
+            {% if p.user_involved in profile.follows.all %}
+
+            <p>Activty : {{p.activity}}</p>            
+            
+            {% endif %}   
+            {% endfor %}         
+            <p>Activty : Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore, tempora?</p>
+        </div>
+      </div>
+    </div>
+     <!-- ------------------Activty notification  End----------------- -->
+
+
+
+     <!-- ------------------Create project componenent----------------- -->
+
+      <div class="row">
+
+        <div class="col-2">
+          <h1>Lets Create a Project</h1>
+          <p>Here you can create, edit and remix any project you want. Explore Yourself.
+            Happy Coding!!
+          </p>
+          <a href="/create_project" class="btn">Create Now &#8594;</a>
+        </div>
+        <div class="col-2">
+ 
+          <img src="../static/images/front6.jpg" alt="">
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+ 
+
+
+
+
+    
+    
+      
+      {% block body  %} {% endblock body  %}
+
+
+    <!-- ------------footer ---------------------- -->
+
+     <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="footer-col-1">
+            <h3>Download Our App</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <div class="app-logo">
+              <img src="../static/images/play-store.png" alt="">
+              <img src="../static/images/app-store.png" alt="">
+            </div>
+          </div>
+          <div class="footer-col-2">
+            <img src="" alt="">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+          <div class="footer-col-3">
+            <h3>Useful Links</h3>
+            <ul>
+              <li>Coupons</li>
+              <li>Blog Post</li>
+              <li>Policy </li>
+              <li>Patreon</li>
+            </ul>
+          </div>
+          <div class="footer-col-4">
+            <h3>Follow Us</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Instagram</li>
+              <li>Twitter </li>
+              <li>Youtube</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <p class="copyright">Copyright 2023 - Archit Gupta</p>
+      </div>
+     </div>
+
+
+   
+
+      <script>
+
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+        function menuToggle(){
+          if( MenuItems.style.maxHeight == "0px")
+          {
+            MenuItems.style.maxHeight = "200px";
+
+          }
+          else{
+            MenuItems.style.maxHeight = "0px";
+          }
+        }
+
+
+ 
+      </script>
+
+
+</body>
+
+</html>

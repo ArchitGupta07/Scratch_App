@@ -1,0 +1,7 @@
+*.env
+bin/
+lib/
+*/sqlite
+../scratch/settings.py
+scratch\settings.py
+*/settings.py
